@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/nom_launcher_foreground.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/layout/activity_hall_of_fame.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.33" />
+        <entry key="app/src/main/res/xml/database.xml" value="0.10507246376811594" />
       </map>
     </option>
   </component>

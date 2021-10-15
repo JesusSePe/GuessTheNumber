@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 String uname = input.getText().toString();
-                                sendMessage(v, uname, Integer.parseInt(att.getText().toString().split(": ")[1]));
+                                sendMessage(v, uname, att.getText().toString().split(": ")[1]);
                                 /*Intent i = new Intent(MainActivity.this, MainActivity.class);
                                 finish();
                                 overridePendingTransition(0, 0);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void sendMessage(View view, String uname, int attempts) {
+    public void sendMessage(View view, String uname, String attempts) {
         Intent intent = new Intent(this, HallOfFame.class);
         //EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         //String message = editText.getText().toString();
