@@ -3,13 +3,18 @@ package com.example.guessthenumber;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HallOfFame extends AppCompatActivity {
@@ -52,8 +57,17 @@ public class HallOfFame extends AppCompatActivity {
                     convertView = getLayoutInflater().inflate(R.layout.list_item, container, false);
                 }
                 // "Pintem" valors (també quan es refresca)
-                ((TextView) convertView.findViewById(R.id.nom)).setText(getItem(pos).nom);
-                ((TextView) convertView.findViewById(R.id.intents)).setText(Integer.toString(getItem(pos).intents));
+                Uri fileUri = null;
+                try {
+                    if (pos == 1) {
+                        fileUri = Uri.fromFile(getFile());
+                    }
+                    ((ImageView) convertView.findViewById(R.id.profile)).setImageURI(fileUri);
+                    ((TextView) convertView.findViewById(R.id.nom)).setText(getItem(pos).nom);
+                    ((TextView) convertView.findViewById(R.id.intents)).setText(Integer.toString(getItem(pos).intents));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return convertView;
             }
 
@@ -61,5 +75,12 @@ public class HallOfFame extends AppCompatActivity {
         // busquem la ListView i li endollem el ArrayAdapter
         ListView lv = (ListView) findViewById(R.id.recordsView);
         lv.setAdapter(adapter);
+    }
+
+    protected File getFile() throws IOException {
+        // Guardar a un fitxer
+        File path = getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File foto = new File(path, "imatge.jpg");
+        return foto;
     }
 }
